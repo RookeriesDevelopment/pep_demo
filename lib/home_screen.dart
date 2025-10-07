@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     } catch (error) {
       setState(() {
-        googleOutput.append("Samsung Health error: $error");
+        googleOutput.append("Health Connect error: $error");
       });
     }
   }
@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     } catch (error) {
       setState(() {
-        googleOutput.append("Samsung Health error: $error");
+        googleOutput.append("Health Connect error: $error");
       });
     }
   }
@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     } catch (error) {
       setState(() {
-        googleOutput.append("Samsung Health error: $error");
+        googleOutput.append("Health Connect error: $error");
       });
     }
   }
