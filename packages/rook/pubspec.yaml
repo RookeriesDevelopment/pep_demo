@@ -1,0 +1,29 @@
+name: rook
+description: "Wrapper for ROOK SDKs"
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.6.2
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  rook_sdk_core: ^1.1.0
+  rook_sdk_samsung_health: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: io.tryrook.rook
+        pluginClass: RookPlugin
+      ios:
+        pluginClass: RookPlugin
