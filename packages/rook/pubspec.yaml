@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
   rook_sdk_core: ^1.1.0
+  rook_sdk_health_connect: ^3.2.1
   rook_sdk_samsung_health: ^1.0.0
 
 dev_dependencies:

@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ConsoleOutput samsungOutput = ConsoleOutput();
+  ConsoleOutput googleOutput = ConsoleOutput();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +41,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text("syncSamsungHealth"),
               ),
               FilledButton(
-                onPressed: clearSamsungOutput,
-                child: Text("Clear"),
+                onPressed: clearSamsungHealthOutput,
+                child: Text("clearSamsungHealthOutput"),
+              ),
+              Divider(),
+              Text("Health Connect"),
+              Text(googleOutput.current),
+              FilledButton(
+                onPressed: initializeHealthConnect,
+                child: Text("initializeHealthConnect"),
+              ),
+              FilledButton(
+                onPressed: permissionsHealthConnect,
+                child: Text("permissionsHealthConnect"),
+              ),
+              FilledButton(
+                onPressed: syncHealthConnect,
+                child: Text("syncHealthConnect"),
+              ),
+              FilledButton(
+                onPressed: clearHealthConnectOutput,
+                child: Text("clearHealthConnectOutput"),
               ),
             ],
           ),
@@ -50,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void clearSamsungOutput() {
+  void clearSamsungHealthOutput() {
     setState(() {
       samsungOutput.clear();
     });
@@ -62,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("initializing...");
       });
 
-      await RookFeature.initialize(clientUUID, secretKey, userID);
+      await RookFeature.initializeSamsung(clientUUID, secretKey, userID);
 
       setState(() {
         samsungOutput.append("initialized");
@@ -80,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("Requesting permissions...");
       });
 
-      await RookFeature.requestPermissions();
+      await RookFeature.requestPermissionsSamsung();
 
       setState(() {
         samsungOutput.append("Permissions requested");
@@ -101,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("Sync sleep summary");
       });
 
-      await RookFeature.syncSleepSummary(today);
+      await RookFeature.syncSleepSummarySamsung(today);
 
       setState(() {
         samsungOutput.append("Sleep Summary synced");
@@ -111,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("Sync physical summary");
       });
 
-      await RookFeature.syncPhysicalSummary(yesterday);
+      await RookFeature.syncPhysicalSummarySamsung(yesterday);
 
       setState(() {
         samsungOutput.append("Physical Summary synced");
@@ -121,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("Sync body summary");
       });
 
-      await RookFeature.syncBodySummary(yesterday);
+      await RookFeature.syncBodySummarySamsung(yesterday);
 
       setState(() {
         samsungOutput.append("Body Summary synced");
@@ -131,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
         samsungOutput.append("Sync Activity events");
       });
 
-      await RookFeature.syncActivityEvents(today);
+      await RookFeature.syncActivityEventsSamsung(today);
 
       setState(() {
         samsungOutput.append("Activity events synced");
@@ -139,6 +159,99 @@ class _HomeScreenState extends State<HomeScreen> {
     } catch (error) {
       setState(() {
         samsungOutput.append("Samsung Health error: $error");
+      });
+    }
+  }
+
+  void clearHealthConnectOutput() {
+    setState(() {
+      googleOutput.clear();
+    });
+  }
+
+  void initializeHealthConnect() async {
+    try {
+      setState(() {
+        googleOutput.append("initializing...");
+      });
+
+      await RookFeature.initializeGoogle(clientUUID, secretKey, userID);
+
+      setState(() {
+        googleOutput.append("initialized");
+      });
+    } catch (error) {
+      setState(() {
+        googleOutput.append("Samsung Health error: $error");
+      });
+    }
+  }
+
+  void permissionsHealthConnect() async {
+    try {
+      setState(() {
+        googleOutput.append("Requesting permissions...");
+      });
+
+      await RookFeature.requestPermissionsGoogle();
+
+      setState(() {
+        googleOutput.append("Permissions requested");
+      });
+    } catch (error) {
+      setState(() {
+        googleOutput.append("Samsung Health error: $error");
+      });
+    }
+  }
+
+  void syncHealthConnect() async {
+    final today = DateTime.now();
+    final yesterday = DateTime.now().subtract(Duration(days: 1));
+
+    try {
+      setState(() {
+        googleOutput.append("Sync sleep summary");
+      });
+
+      await RookFeature.syncSleepSummaryGoogle(today);
+
+      setState(() {
+        googleOutput.append("Sleep Summary synced");
+      });
+
+      setState(() {
+        googleOutput.append("Sync physical summary");
+      });
+
+      await RookFeature.syncPhysicalSummaryGoogle(yesterday);
+
+      setState(() {
+        googleOutput.append("Physical Summary synced");
+      });
+
+      setState(() {
+        googleOutput.append("Sync body summary");
+      });
+
+      await RookFeature.syncBodySummaryGoogle(yesterday);
+
+      setState(() {
+        googleOutput.append("Body Summary synced");
+      });
+
+      setState(() {
+        googleOutput.append("Sync Activity events");
+      });
+
+      await RookFeature.syncActivityEventsGoogle(today);
+
+      setState(() {
+        googleOutput.append("Activity events synced");
+      });
+    } catch (error) {
+      setState(() {
+        googleOutput.append("Samsung Health error: $error");
       });
     }
   }

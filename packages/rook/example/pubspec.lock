@@ -217,6 +217,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  rook_sdk_health_connect:
+    dependency: transitive
+    description:
+      name: rook_sdk_health_connect
+      sha256: be595a1c7be89faa16be98dfcac5f4985fa7943ce4a802260bbf791aaa2e477a
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   rook_sdk_samsung_health:
     dependency: transitive
     description:
