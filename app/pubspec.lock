@@ -166,14 +166,14 @@ packages:
   rook:
     dependency: transitive
     description:
-      path: "packages/rook"
+      path: "../packages/rook"
       relative: true
     source: path
     version: "0.0.1"
   rook_feature:
     dependency: "direct main"
     description:
-      path: "packages/rook_feature"
+      path: "../packages/rook_feature"
       relative: true
     source: path
     version: "0.0.1"
